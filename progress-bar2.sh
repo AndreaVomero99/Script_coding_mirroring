@@ -5,29 +5,28 @@
  
 # Invoke this script with bash. It doesn't work with sh.
  
-interval=1 # Intervallo di tempo pari a 1 secondo
-long_interval=10 # Intervallo più lungo, stavolta 10 secondi
+interval=1 # Time interval of 1 second
+long_interval=10 # Longer interval, this time 10 seconds
  
-{ #Aperta funzione
-     trap "exit" SIGUSR1 # Stabilisce un trap per il segnale SIGURSR1, che è un segnale dell'utente stesso
-     sleep $interval; sleep $interval # Attiva due volte sleep con la variabile interval, pari a 1 secondo, quindi il programma "dormirà" per due secondi
-     while true # Apertura ciclo while, finché la condizione sarà vera continuerà
-     do # Necessario in un ciclo while
-       echo -n '.'     # Use dots. # Stampa il punto, ma evita di andare a capo tramite -n
-       sleep $interval # Di nuovo dormita per 1 secondo
-     done; } &         # Start a progress bar as a background process. # Chiude la funzione e mette in background la progress bar 
+{ # Begin function
+     trap "exit" SIGUSR1 # Set a trap for the SIGUSR1 signal, which is a user-defined signal
+     sleep $interval; sleep $interval # Activate sleep twice with the interval variable, equal to 1 second, so the program will "sleep" for two seconds
+     while true # Begin while loop, it will continue as long as the condition is true
+     do # Required in a while loop
+       echo -n '.'     # Use dots. # Print a dot, but avoid a line break with -n
+       sleep $interval # Sleep again for 1 second
+     done; } &         # Start a progress bar as a background process. # Close the function and put the progress bar in the background
  
-pid=$! # $! contiene l'id del processo eseguito precendentemente, quindi lo salviamo in una variabile
-trap "echo !; kill -USR1 $pid; wait $pid"  EXIT        # To handle ^C. 
-#Il blocco chiede al programma di stampare un !, e di impostare una trappola per il segnale EXIT. che funge come un control + c e manda il segnale USR1 al processo
-
+pid=$! # $! contains the ID of the previously executed process, so we save it in a variable
+trap "echo !; kill -USR1 $pid; wait $pid"  EXIT        # To handle ^C.
+# This block asks the program to print a !, and set a trap for the EXIT signal, which functions like Control+C and sends the USR1 signal to the process
  
-echo -n 'Long-running process ' # Stampa la stringa, senza andare a capo tramite -n
-sleep $long_interval # viene usata finalmente la variabile lunga, con 10 secondi
-echo ' Finished!' # E ci informa della fine del "processo"
+echo -n 'Long-running process ' # Print the string without a line break using -n
+sleep $long_interval # Finally, the long interval variable is used, with 10 seconds
+echo ' Finished!' # Informs us of the end of the "process"
  
-kill -USR1 $pid #Con questo viene mandato il segnale al processo, e lo ferma
+kill -USR1 $pid # This sends the signal to the process and stops it
 wait $pid              # Stop the progress bar.
 trap EXIT
  
-exit $? # Script terminato, e otteniamo anche il codice di status del comando eseguito, se eseguito correttamente dovrebbe risultare 0
+exit $? # Script ends, and we also get the status code of the executed command. If executed correctly, it should be 0
