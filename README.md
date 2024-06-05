@@ -1,3 +1,3 @@
-# Scopo
+# Aim
 
-Questa repository ha lo scopo di presentare le analisi fatte su dei samples di scripting, che verranno commentati e spiegati nel funzionamento
+This repository is focused on analysing several samples of scripts, explaining the functionalities and operations that said programs are made to implement
