@@ -1,9 +1,9 @@
-# Il codice deve essere eseguito con privilegi da amministratore root, il sudo non basta
+# The code must be executed with root administrator privileges, sudo is not enough
 
-cd /var/log # cambiamo directory, raggiungendo la directory var, dove sono solitamente conservati i log
-cat /dev/null > messages # con il cat printiamo il contenuto del file null, che è solitamente vuoto, di conseguenza sovrascriviamo con la redirection il file messages
+cd /var/log # Change directory to /var/log, where log files are usually stored
+cat /dev/null > messages # Use cat to print the contents of /dev/null, which is usually empty, and then overwrite the messages file using redirection
 
-# A quest punto il file messages sarà vuoto anche lui stesso
+# At this point, the messages file will be empty as well
 
-cat /dev/null > wtmp # stesso discorso per il file wtmp, che conserva i log di accesso e disconnessione degli utenti
-echo "Log files cleaned up." # e con echo abbiamo anche una stringa che ci conferma l'avvenuta sovrascrizione dei due file 
+cat /dev/null > wtmp # The same goes for the wtmp file, which stores user login and logout logs
+echo "Log files cleaned up." # And with echo, we have a string confirming that the two files have been overwritten
