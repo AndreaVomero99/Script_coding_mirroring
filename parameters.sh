@@ -1,22 +1,22 @@
 #!/bin/bash  
- 
+
 # Call this script with at least 10 parameters, for example
 # ./scriptname 1 2 3 4 5 6 7 8 9 10
-MINPARAMS=10 # Imposta il numero di parametri minimi a 10 con la variabile MINPARAMS
+MINPARAMS=10 # Set the minimum number of parameters to 10 with the variable MINPARAMS
  
-echo # Linea vuota, così da lasciare lo spazio per leggibilità migliorata
+echo # Blank line for improved readability
  
-echo "The name of this script is \"$0\"." # Completa la stringa printata dall'echo con il parametro $0, ottenendo così nome dello script e anche il percorso
+echo "The name of this script is \"$0\"." # Completes the echoed string with the $0 parameter, thus obtaining the script name and path
 # Adds ./ for current directory
-echo "The name of this script is \"`basename $0`\"." # Così si ottiene sempre il nome, ma senza il percorso
+echo "The name of this script is \"`basename $0`\"." # This way, only the name is obtained without the path
 # Strips out path name info (see 'basename')
  
-echo # Sempre linea vuota
+echo # Another blank line
  
-if [ -n "$1" ]    # Questi blocchi condizionali controllano che i parametri non siano vuoti          # Tested variable is quoted.
+if [ -n "$1" ]    # These conditional blocks check that the parameters are not empty          # Tested variable is quoted.
 then
- echo "Parameter #1 is $1"  # Need quotes to escape # # E stampano il contenuto del parametro
-fi # E chiude il blocco condizionale
+ echo "Parameter #1 is $1"  # Need quotes to escape # # And print the content of the parameter
+fi # Closes the conditional block
  
 if [ -n "$2" ]
 then
@@ -36,15 +36,15 @@ then
  echo "Parameter #10 is ${10}"
 fi
  
-echo "-----------------------------------" # Stampa una linea sempre per favorire la leggibilità
-echo "All the command-line parameters are: "$*"" # E tramite la regex stampa tutti i parametri da 1 a 10
+echo "-----------------------------------" # Prints a line for better readability
+echo "All the command-line parameters are: "$*"" # And using regex, prints all parameters from 1 to 10
  
-if [ $# -lt "$MINPARAMS" ] # Ora verifica che i parametri siano almeno 10, qualora fosse inferiore a 10 il numero...
+if [ $# -lt "$MINPARAMS" ] # Now it checks that the parameters are at least 10, if the number is less than 10...
 then
   echo
-  echo "This script needs at least $MINPARAMS command-line arguments!" # ...il sistema stamperà a schermo questa stringa
+  echo "This script needs at least $MINPARAMS command-line arguments!" # ...the system will print this string
 fi 
  
 echo
  
-exit 0 # E si chiude lo script
+exit 0 # Ends the script
